@@ -35,7 +35,7 @@
            slides below. -->
       <article>
         <h1>
-          Git in the trenches
+          <code>Git</code> in the trenches
         </h1>
         <h3>An experience report</h3>
         <p>
@@ -45,28 +45,23 @@
 
       <article>
         <h3>
-            This talk
+            What I want you to get out of this talk
         </h3>
         <ul class="build">
             <li>
-                What I want you to get out of it:
-                <ul class="build">
-                    <li>
-                        A small example workflow of how to use Git to talk to SVN
-                    </li>
-                    <li>
-                        Some hints and tips
-                    </li>
-                </ul>
+                A small example workflow of how to use Git to talk to SVN
             </li>
             <li>
-                It's not all about you!
+                Some hints and tips
+            </li>
+            <li>
+                But it's not all about you!
             </li>
             <li>
                 I'd like you to point and laugh and say:
                 <ul class="build">
                     <li>
-                        Why are you doing that?! You should be using 'git foo'
+                        Why are you doing that?! You should be using '<code>git &lt;super-duper-command&gt;</code>'!
                     </li>
                 </ul>
             </li>
@@ -75,36 +70,102 @@
 
       <article>
           <h3>
-              A workflow
+              Getting started
           </h3>
           <ul class="build">
               <li>
-                  <code>git svn rebase</code>
+                  Install git for Windows, I use <code>git version 1.7.10.msysgit.1</code> (was installed by github for Windows)
               </li>
               <li>
-                  <code>git checkout -b &lt;feature-branch&gt;</code>
+                  <code>git svn clone &lt;some-svn-repo-url&gt;</code>
               </li>
               <li>
-                <ul>
-                  <li>
-                      <code>git add .</code>
-                  </li>
-                  <li>
-                      <code>git commit</code>
-                  </li>
-                </ul>
+                  <p>wait a while i.e. go to lunch. git svn is inside your repo downloading all revisions.</p>
+
+                  <p>if you don't care about older revisions, this might work:
+                      <code>git svn clone -r &lt;OLDEST_REV&gt;:HEAD &lt;some-svn-repo-url&gt;</code></p>
               </li>
               <li>
-                  <code>git checkout master</code>
-                  <code>git merge &lt;feature-branch&gt; --squash</code>
+                  default editor is vim, <b>gack</b>, so I do:
+                  <code>git config --global core.editor &lt;some-path-to-a-shell-for-editor&gt;</code>
+                  (I use NotePad++)
               </li>
           </ul>
       </article>
 
       <article>
           <h3>
-              Some history
+              The cycle of life
           </h3>
+          <ul class="build">
+              <li>
+                  <code>git checkout -b &lt;feature-branch&gt;</code>
+              </li>
+              <li>
+                  <code>git add .</code>
+              </li>
+              <li>
+                  <code>git commit</code>
+              </li>
+              <li>
+                  <code>git checkout master</code>
+              </li>
+              <li>
+                  <code>git svn rebase</code>
+              </li>
+              <li>
+                  <code>git merge &lt;feature-branch&gt; --squash</code>
+              </li>
+              <li>
+                  <code>git commit</code>
+              </li>
+              <li>
+                  <code>git checkout &lt;feature-branch&gt;</code>
+              </li>
+              <li>
+                  <code>git merge master</code>
+              </li>
+          </ul>
+      </article>
+
+      <article>
+          <h3>
+              What's with the &lt;feature-branch&gt;'s?
+          </h3>
+          <ul class="build">
+              <li><code>git-svn</code> isn't a big fan of uncommited code</li>
+              <li><code>git stash</code>, <code>git stash pop</code> can help</li>
+              <li>or, keep <code>master</code> for integrations, merging and very quick fixes</li>
+          </ul>
+      </article>
+
+      <article>
+          <h3>
+              Why use <em>RAW</em> git commands?
+          </h3>
+          <ul class="build">
+              <li>I tried <a href="http://www.syntevo.com/smartgit/index.html">SmartGit</a></li>
+              <li>IMHO, it's a broken abstraction</li>
+              <li>git CLI is idiosyncratic, but very powerful</li>
+          </ul>
+      </article>
+
+      <article>
+          <h3>Tips</h3>
+          <ul class="build">
+              <li>"my name is Mike and <code>git reflog</code> saved my ass"</li>
+              <li>rewrite history with <code>git rebase -i HEAD~2</code></li>
+              <li>don't be afraid to branch, you're not in SVN anymore</li>
+              <li>git bash <code>Ctrl-R</code> for commands (alternatively, some people setup shortcuts)</li>
+          </ul>
+      </article>
+
+      <article>
+          <h3>Wanted</h3>
+          <ul class="build">
+              <li>a worthwhile git extension to Visual Studio 2010</li>
+              <li>a way to use Emacs (client) for Windows as my commit editor without ceaseless grovelling to the gods of shell-escaping</li>
+          </ul>
       </article>
 
       <!--
