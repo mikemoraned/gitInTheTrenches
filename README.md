@@ -1,2 +1,1 @@
-gitInTheTrenches
-================
+Git in the trenches
